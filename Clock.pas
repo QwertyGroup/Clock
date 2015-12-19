@@ -288,12 +288,15 @@ procedure pMs(ms:word);
         if ms >= 10 then
             begin
                 case ms div 10 of
-                    1: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pOne; end;
-                    2: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pTwo; end;
+                    1: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pOne;     end;
+                    2: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pTwo;     end;
                     3: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pThree;   end;
                     4: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pFour;    end;
                     5: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pFive;    end;
                     6: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pSix;     end;
+                    7: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pSeven;   end;
+                    8: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pEight;   end;
+                    9: begin window(WinConst*6,VertPos,WinConst*7,VertPos+9); pNine;    end;
                 end;
 
                 case ms mod 10 of
