@@ -1,4 +1,5 @@
 {Часы}
+{Остановился на рефреше 59}
 uses Crt,
      Dos;
 const WinConst = 10;
@@ -363,6 +364,7 @@ procedure pHourLine;
     end;
 {----CurrentSecond----}
 procedure pCurrSec(s:word);
+    var refresh:boolean;
     begin
         gotoxy(10+s-1,VertPos-1);
         textcolor(15);
@@ -380,11 +382,18 @@ procedure pCurrSec(s:word);
         textcolor(12);
         write('=');
 
-        if s = 59 then
-            pSecLine;
+        if s <> 59 then
+            refresh:=false;
+
+        if (s = 59) and not refresh then
+            begin
+                refresh:=true;
+                pSecLine;
+            end;
     end;
 {----CurrentMinute----}
 procedure pCurrMin(m:word);
+    var refresh:boolean;
     begin
         gotoxy(10+m-1,VertPos-2);
         textcolor(15);
@@ -402,8 +411,14 @@ procedure pCurrMin(m:word);
         textcolor(13);
         write('=');
 
-        if m = 59 then
-            pMinLine;
+        if m <> 59 then
+            refresh:=false;
+
+        if (m = 59) and not refresh then
+            begin
+                refresh:=true;
+                pMinLine;
+            end;
     end;
 {----CurrentHour----}
 procedure pCurrHour(h:word);
@@ -442,7 +457,7 @@ procedure pClock;
         pMs(ms);
         window(1,1,80,25);
         pCurrSec(s);
-        pCurrMin(m);
+        pCurrMin(59);
         pCurrHour(h);
         textcolor(15);
         gotoxy(1,24);
