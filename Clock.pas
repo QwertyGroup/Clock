@@ -314,18 +314,38 @@ procedure pMs(ms:word);
                 end;
             end;
     end;
+{----SecondDiv100Line----}
+procedure pMsLine;
+    var i:integer;
+        vpUp, vpDown:integer;
+    begin
+        vpUp:=VertPos-1;
+        vpDown:=VertPos+9;
+        window(1,1,80,25);
+        gotoxy(15,vpUp);
+        textcolor(15);
+        for i:=1 to 50 do
+            write('-');
+
+        gotoxy(15,vpDown);
+        textcolor(15);
+        for i:=1 to 50 do
+            write('-');
+    end;
 {----SecondLine----}
 procedure pSecLine;
     var i:integer;
+        vpUp, vpDown:integer;
     begin
+        vpUp:=VertPos-2;
+        vpDown:=VertPos+10;
         window(1,1,80,25);
-
-        gotoxy(10,VertPos-1);
+        gotoxy(10,vpUp);
         textcolor(15);
         for i:=1 to 60 do
             write('-');
 
-        gotoxy(10,VertPos+9);
+        gotoxy(10,vpDown);
         textcolor(15);
         for i:=1 to 60 do
             write('-');
@@ -333,15 +353,17 @@ procedure pSecLine;
 {----MinuteLine----}
 procedure pMinLine;
     var i:integer;
+        vpUp, vpDown:integer;
     begin
+        vpUp:=VertPos-3;
+        vpDown:=VertPos+11;
         window(1,1,80,25);
-
-        gotoxy(10,VertPos-2);
+        gotoxy(10,vpUp);
         textcolor(15);
         for i:=1 to 60 do
             write('-');
 
-        gotoxy(10,VertPos+10);
+        gotoxy(10,vpDown);
         textcolor(15);
         for i:=1 to 60 do
             write('-');
@@ -349,103 +371,145 @@ procedure pMinLine;
 {----HourLine----}
 procedure pHourLine;
     var i:integer;
+        vpUp, vpDown:integer;
     begin
+        vpUp:=VertPos-4;
+        vpDown:=VertPos+12;
         window(1,1,80,25);
-
-        gotoxy(28,VertPos-3);
+        gotoxy(28,vpUp);
         textcolor(15);
         for i:=1 to 24 do
             write('-');
 
-        gotoxy(28,VertPos+11);
+        gotoxy(28,vpDown);
         textcolor(15);
         for i:=1 to 24 do
             write('-');
     end;
+{----CurrentSecondDiv100----}
+procedure pCurrmSec(ms:word);
+    var vpUp, vpDown:integer;
+        i:integer;
+    begin
+        vpUp:=VertPos-1;
+        vpDown:=VertPos+9;
+        gotoxy(15,vpUp);
+        textcolor(15);
+        for i:=1 to 50 do
+            write('-');
+
+        gotoxy((ms div 2)+15,vpUp);
+        textcolor(11);
+        write('=');
+
+        gotoxy(15,vpDown);
+        textcolor(15);
+        for i:=1 to 50 do
+            write('-');
+
+        gotoxy((ms div 2)+15,vpDown);
+        textcolor(11);
+        write('=');
+
+        if ms = 0 then
+            begin
+                gotoxy(15+49,vpUp);
+                textcolor(15);
+                write('-');
+                gotoxy(15+49,vpDown);
+                write('-');
+            end;
+    end;
 {----CurrentSecond----}
 procedure pCurrSec(s:word);
+    var vpUp, vpDown:integer;
     begin
-        gotoxy(10+s-1,VertPos-1);
+        vpUp:=VertPos-2;
+        vpDown:=VertPos+10;
+        gotoxy(10+s-1,vpUp);
         textcolor(15);
         if s <> 0 then
             write('-');
-        gotoxy(10+s,VertPos-1);
+        gotoxy(10+s,vpUp);
         textcolor(12);
         write('=');
 
-        gotoxy(10+s-1,VertPos+9);
+        gotoxy(10+s-1,vpDown);
         textcolor(15);
         if s <> 0 then
             write('-');
-        gotoxy(10+s,VertPos+9);
+        gotoxy(10+s,vpDown);
         textcolor(12);
         write('=');
 
         if s = 0 then
             begin
-                gotoxy(10+59,VertPos-1);
+                gotoxy(10+59,vpUp);
                 textcolor(15);
                 write('-');
-                gotoxy(10+59,VertPos+9);
+                gotoxy(10+59,vpDown);
                 write('-');
             end;
     end;
 {----CurrentMinute----}
 procedure pCurrMin(m:word);
+    var vpUp, vpDown:integer;
     begin
-        gotoxy(10+m-1,VertPos-2);
+        vpUp:=VertPos-3;
+        vpDown:=VertPos+11;
+        gotoxy(10+m-1,vpUp);
         textcolor(15);
         if m <> 0 then
             write('-');
-        gotoxy(10+m,VertPos-2);
+        gotoxy(10+m,vpUp);
         textcolor(13);
         write('=');
 
-        gotoxy(10+m-1,VertPos+10);
+        gotoxy(10+m-1,vpDown);
         textcolor(15);
         if m <> 0 then
             write('-');
-        gotoxy(10+m,VertPos+10);
+        gotoxy(10+m,vpDown);
         textcolor(13);
         write('=');
 
         if m = 0 then
             begin
-                gotoxy(10+59,VertPos-2);
+                gotoxy(10+59,vpUp);
                 textcolor(15);
                 write('-');
-                gotoxy(10+59,VertPos+10);
+                gotoxy(10+59,vpDown);
                 write('-');
             end;
     end;
 {----CurrentHour----}
 procedure pCurrHour(h:word);
+    var vpUp, vpDown:integer;
     begin
-        gotoxy(28+h-1,VertPos-3);
+        vpUp:=VertPos-4;
+        vpDown:=VertPos+12;
+        gotoxy(28+h-1,vpUp);
         textcolor(15);
         if h <> 0 then
             write('-');
-        gotoxy(28+h,VertPos-3);
+        gotoxy(28+h,vpUp);
         textcolor(14);
         write('=');
 
-        gotoxy(28+h-1,VertPos+11);
+        gotoxy(28+h-1,vpDown);
         textcolor(15);
         if h <> 0 then
             write('-');
-        gotoxy(28+h,VertPos+11);
+        gotoxy(28+h,vpDown);
         textcolor(14);
         write('=');
-
-        if h = 23 then
-            pHourLine;
 
         if h = 0 then
             begin
-                gotoxy(10+59,VertPos-3);
+                gotoxy(28+23,vpUp);
                 textcolor(15);
                 write('-');
-                gotoxy(10+59,VertPos+11);
+                gotoxy(28+23,vpDown);
                 write('-');
             end;
     end;
@@ -463,6 +527,7 @@ procedure pClock;
         textcolor(11);
         pMs(ms);
         window(1,1,80,25);
+        pCurrmSec(ms);
         pCurrSec(s);
         pCurrMin(m);
         pCurrHour(h);
@@ -474,6 +539,7 @@ procedure pClock;
 {----Main----}
 begin
     pScreen;
+    pMsLine;
     pSecLine;
     pMinLine;
     pHourLine;
