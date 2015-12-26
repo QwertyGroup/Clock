@@ -1,5 +1,5 @@
 {Часы}
-{Остановился на рефреше 59}
+{Clock v3.0}
 uses Crt,
      Dos;
 const WinConst = 10;
