@@ -381,14 +381,6 @@ procedure pCurrSec(s:word);
         textcolor(12);
         write('=');
 
-        if s = 0 then
-            begin
-                gotoxy(10+59,VertPos-1);
-                textcolor(15);
-                write('-');
-                gotoxy(10+59,VertPos+9);
-                write('-');
-            end;
     end;
 {----CurrentMinute----}
 procedure pCurrMin(m:word);
@@ -409,14 +401,6 @@ procedure pCurrMin(m:word);
         textcolor(13);
         write('=');
 
-        if m = 0 then
-            begin
-                gotoxy(10+59,VertPos-2);
-                textcolor(15);
-                write('-');
-                gotoxy(10+59,VertPos+10);
-                write('-');
-            end;
     end;
 {----CurrentHour----}
 procedure pCurrHour(h:word);
@@ -439,15 +423,6 @@ procedure pCurrHour(h:word);
 
         if h = 23 then
             pHourLine;
-
-        if h = 0 then
-            begin
-                gotoxy(10+59,VertPos-3);
-                textcolor(15);
-                write('-');
-                gotoxy(10+59,VertPos+11);
-                write('-');
-            end;
     end;
 {----Clock----}
 procedure pClock;
@@ -464,7 +439,7 @@ procedure pClock;
         pMs(ms);
         window(1,1,80,25);
         pCurrSec(s);
-        pCurrMin(m);
+        pCurrMin(59);
         pCurrHour(h);
         textcolor(15);
         gotoxy(1,24);
