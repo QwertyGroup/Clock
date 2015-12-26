@@ -474,11 +474,12 @@ procedure pClock;
 {----Main----}
 begin
     pScreen;
-    pHourLine;
-    pMinLine;
     pSecLine;
+    pMinLine;
+    pHourLine;
     repeat
         pClock;
+        //delay(100);
     until KeyPressed;
 end.
 
